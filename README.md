@@ -1,4 +1,5 @@
-此项目记录了Litchi从MPI入门基础开始的所有学习路径，其中 code1 至 code4 为《高性能计算并行编程技术-MPI并行程序设计》一书中Fortran代码的c+=改写版本：  
+此项目记录了Litchi从MPI入门基础开始的所有学习路径，  
+其中 code1 为《高性能计算并行编程技术-MPI并行程序设计》一书中Fortran代码的c+=改写版本，具体如下：    
 code1 对应 程序21：用MPI_SEND和MPI_RECV实现的Jacobi迭代  
 code1_1 对应 程序22：用MPI_SENDRECV实现的Jacobi迭代  
 code1_2 对应 程序23：用虚拟进程实现的Jacobi迭代  
@@ -7,3 +8,5 @@ code1_4 对应 程序25：主进程按续与乱续打印从进程的消息
 code1_5 对应 程序26：使用缓存通信模式发送消息  
 code1_6 对应 程序27：同步模式的消息发送  
 code1_7 对应 程序28：阻塞通信模式实例  
+
+code2 对应任务2.1 任意进程数Jacobi迭代阻塞版本实现，结果汇总输出（输出⼀个table，以直接打印、txt、excel格式均可）
