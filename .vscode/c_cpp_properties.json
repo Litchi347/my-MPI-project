@@ -1,0 +1,13 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/lib/x86_64-linux-gnu/mpich/include"
+            ],
+            "defines": []
+        }
+    ],
+    "version": 4
+}
