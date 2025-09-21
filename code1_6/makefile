@@ -1,4 +1,4 @@
-CXX = mpic++                             # 定义变量CXX,表示要用到的C++编译器/命令
+CXX = mpiicpx                             # 定义变量CXX,表示要用到的C++编译器/命令
 CXXFLAGS = -Wall -O2                      # 定义编译选项变量CXXFLAGS,-Wall打开常见警告,-O2表示优化等级
 
 TARGET = program                          # 定义最终生成的可执行文件名
