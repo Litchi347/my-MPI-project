@@ -38,28 +38,30 @@ int main(int argc,char* argv[]){
         MPI_Abort(MPI_COMM_WORLD,1);
     }
 
+    // 就绪发送者
     if(rank == 0){
         if (rank == 0){
             cout << "Rsend Test " << endl;
         }
-        // 进程0在执行就绪发送之前首先执行一个阻塞接收
-        // 保证就绪发送操作一定在改阻塞接收完成后才能进行，该阻塞接收操作没有接收任何数据
+        // 等待进程1发送的“就绪信号”，只用于同步，不传输实际数据（等待确认准备好）
         MPI_Recv(MPI_BOTTOM,0,MPI_INT,next,tag,MPI_COMM_WORLD,&status);      // MPI_BOTTOM是MPI预定义的一个内存地址
         cout << "Processs " << rank << " post Ready send" << endl;
-        //执行就绪发送
+        
+        //执行就绪发送,发送实际的数据给进程1，必须确保进程1的接受操作已经发布（通过前面的同步保证）
         MPI_Rsend(send_buf.data(),count,MPI_FLOAT,next,tag,MPI_COMM_WORLD);
 
+    // 接收者
     }else{
         cout << "Process " << rank << " post a receive call" << endl;
 
-        // 进程1先执行一个非阻塞的接收调用，该调用可以立即返回
+        // 先执行一个非阻塞的接收调用，调用后立即返回，不会等待接收操作完成（可以接收）
         MPI_Irecv(recv_buf.data(),TEST_SIZE,MPI_FLOAT,
                     MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&request);
         
-        // 然后再执行一个发送空信息的阻塞调用，将这一阻塞发送放在和就绪发送对应的MPI_Irecv之后，可以保证就绪发送一定在相应的接收调用之后才调用
+        // 发送空信息的就绪信号，确保进程0的就绪发送在接收操作发布之后才执行
         MPI_Send(MPI_BOTTOM,0,MPI_INT,next,tag,MPI_COMM_WORLD);
 
-        // 完成非阻塞接收调用
+        // 等待非阻塞接收调用的完成：等待实际数据的到达
         MPI_Wait(&request,&status);
 
         cout << "Process " << rank << " Receive Rsend message from " << status.MPI_SOURCE << endl;
