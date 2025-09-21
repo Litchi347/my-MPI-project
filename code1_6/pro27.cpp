@@ -20,14 +20,16 @@ int main(int argc,char* argv[]){
     MPI_Comm_size(MPI_COMM_WORLD,&np);
 
     if(np != 2){
-        fprintf(stderr,"*** This program uses exactly 2 processes!***\n");
-        MPI_Abort(MPI_COMM_WORLD,1);
+        fprintf(stderr,"*** This program uses exactly 2 processes!***\n");     // 与print类似，通常用来打印错误信息
+        MPI_Abort(MPI_COMM_WORLD,1);                                           // 紧急终止MPI里的所有进程，并返回错误代码1
     }
     act_size = 5;                                                              // 消息最大长度
     if(rank == src){                                                           // 当前进程为发送进程
         act_size = 1;
         MPI_Ssend(buffer,act_size,MPI_INT,dest,1,MPI_COMM_WORLD);              // 同步消息发送，发送一个整数型，tag标识为1
+                                                                               // 和普通的 MPI_Send 不一样，MPI_Ssend 会等到接收方已经开始接收，才会返回
         fprintf(stderr,"MPI_Ssend %d data,tag=1\n",act_size);
+        
         act_size = 4;
         MPI_Ssend(buffer,act_size,MPI_INT,dest,2,MPI_COMM_WORLD);              // 同步发送4个整数型，tag标识为2
         fprintf(stderr,"MPI_Ssend %d data,tag=2\n",act_size);
