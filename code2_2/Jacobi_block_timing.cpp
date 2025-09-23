@@ -109,9 +109,9 @@ int main(int argc,char* argv[]){
     if (rank == 0){
         cout << "==== Timing Breakdown (seconds) ====\n";
         cout << "Initialization: " << (t_init - t_start) << "\n" ;
-        cout << "Computation: " << (t_compute - t_start) << "\n";
-        cout << "Gather: " << (t_gather - t_start) << "\n";
-        cout << "Output: " << (t_output - t_start) << "\n";
+        cout << "Computation: " << (t_compute - t_init) << "\n";
+        cout << "Gather: " << (t_gather - t_compute) << "\n";
+        cout << "Output: " << (t_output - t_gather) << "\n";
         cout << "Total: " << (t_output - t_start) << "\n";
     }
     return 0;
