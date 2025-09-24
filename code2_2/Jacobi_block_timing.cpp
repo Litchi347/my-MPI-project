@@ -16,7 +16,7 @@ int main(int argc,char* argv[]){
     MPI_Barrier(MPI_COMM_WORLD);
     t_start = MPI_Wtime();
 
-    const int N = 16;                                                                    // 全局区间大小
+    const int N = 8000;                                                                  // 全局区间大小
     const int MAX_ITERS = 10;                                                            // 迭代次数
 
     int local_n = N / size;                                                              // 每个进程分到的局部区间大小
