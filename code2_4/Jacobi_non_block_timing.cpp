@@ -71,7 +71,7 @@ int main(int argc,char* argv[]){
 
     double local_time = t_end - t_start;
     double max_time;
-    MPI_Reduce(&local_time,&max_time,1,MPI_DOUBLE,MPI_MAX,0,MPI_COMM_WORLD);
+    MPI_Reduce(&local_time,&max_time,1,MPI_DOUBLE,MPI_MAX,0,MPI_COMM_WORLD);                // 统计全局耗时
 
     // // 收集结果
     // vector<int> recvcounts(size);                                                        // recvcounts表示第i个进程贡献多少个数据给根进程
