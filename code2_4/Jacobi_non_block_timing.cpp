@@ -12,11 +12,7 @@ int main(int argc,char* argv[]){
     MPI_Comm_rank(MPI_COMM_WORLD,&rank);
     MPI_Comm_size(MPI_COMM_WORLD,&size);                                                 // 进程总数
 
-    // double t_start,t_init,t_compute,t_gather,t_output;
-    // MPI_Barrier(MPI_COMM_WORLD);
-    // t_start = MPI_Wtime();
-
-    const int N = 16000;                                                                 // 全局区间大小
+    const int N = 100000000;                                                             // 全局区间大小
     const int MAX_ITERS = 100;                                                           // 迭代次数
 
     int local_n = N / size;                                                              // 每个进程分到的局部区间大小
@@ -71,7 +67,7 @@ int main(int argc,char* argv[]){
 
     double local_time = t_end - t_start;
     double max_time;
-    MPI_Reduce(&local_time,&max_time,1,MPI_DOUBLE,MPI_MAX,0,MPI_COMM_WORLD);                // 统计全局耗时
+    MPI_Reduce(&local_time,&max_time,1,MPI_DOUBLE,MPI_MAX,0,MPI_COMM_WORLD);                // 比较所有进程的local_time，根据木桶效应取最长的时间
 
     // // 收集结果
     // vector<int> recvcounts(size);                                                        // recvcounts表示第i个进程贡献多少个数据给根进程
@@ -81,7 +77,6 @@ int main(int argc,char* argv[]){
     //         recvcounts[i] ++;
     //     }
     // }
-
     // vector<int> displs(size);                                                            // displs表示第i个进程的数据在全局数组里的起始下标（位移offset)
     // displs[0] = 0;
     // for(int i = 1;i < size;i++){
@@ -101,8 +96,7 @@ int main(int argc,char* argv[]){
     // }
 
     if(rank == 0){
-        cout << "Non-blocking Jacobi,processes=" << size
-        << ", Time=" << fixed << setprecision(6) << max_time << " s\n";
+        cout << "Time of calculation=" << fixed << setprecision(6) << max_time << " s\n";
     }
     MPI_Finalize();
     return 0;

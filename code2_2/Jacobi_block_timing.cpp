@@ -16,7 +16,7 @@ int main(int argc,char* argv[]){
     MPI_Barrier(MPI_COMM_WORLD);
     t_start = MPI_Wtime();
 
-    const int N = 8000;                                                                  // 全局区间大小
+    const int N = 100000000;                                                             // 全局区间大小
     const int MAX_ITERS = 10;                                                            // 迭代次数
 
     int local_n = N / size;                                                              // 每个进程分到的局部区间大小
@@ -81,38 +81,38 @@ int main(int argc,char* argv[]){
                 global_x.data(),recvcounts.data(),displs.data(),MPI_DOUBLE,
                 0,MPI_COMM_WORLD);
     
-    MPI_Barrier(MPI_COMM_WORLD);
-    t_gather = MPI_Wtime();
+    // MPI_Barrier(MPI_COMM_WORLD);
+    // t_gather = MPI_Wtime();
 
-    if(rank == 0){
-        ofstream fout("jacobi_result.txt");
-        fout << "Index\tValue\n";
-        cout << "Index\tValue\n";
-        for(int i = 0;i < N ;i++){
-            fout << i << "\t" << fixed << setprecision(6) << global_x[i] << "\n";
-            cout << i << "\t" << fixed << setprecision(6) << global_x[i] << "\n";
-        }
-        fout.close();
+    // if(rank == 0){
+    //     ofstream fout("jacobi_result.txt");
+    //     fout << "Index\tValue\n";
+    //     cout << "Index\tValue\n";
+    //     for(int i = 0;i < N ;i++){
+    //         fout << i << "\t" << fixed << setprecision(6) << global_x[i] << "\n";
+    //         cout << i << "\t" << fixed << setprecision(6) << global_x[i] << "\n";
+    //     }
+    //     fout.close();
 
-        ofstream fcsv("Jacobi_results.csv");
-        fcsv << "Index,Value\n";
-        for(int i = 0;i < N;i++){
-            fcsv << i << "," << global_x[i] << "\n";
-        }
-        fcsv.close();
-    }
-    MPI_Barrier(MPI_COMM_WORLD);
-    t_output = MPI_Wtime();
+    //     ofstream fcsv("Jacobi_results.csv");
+    //     fcsv << "Index,Value\n";
+    //     for(int i = 0;i < N;i++){
+    //         fcsv << i << "," << global_x[i] << "\n";
+    //     }
+    //     fcsv.close();
+    // }
+    // MPI_Barrier(MPI_COMM_WORLD);
+    // t_output = MPI_Wtime();
 
     MPI_Finalize();
 
     if (rank == 0){
-        cout << "==== Timing Breakdown (seconds) ====\n";
-        cout << "Initialization: " << (t_init - t_start) << "\n" ;
+        // cout << "==== Timing Breakdown (seconds) ====\n";
+        // cout << "Initialization: " << (t_init - t_start) << "\n" ;
         cout << "Computation: " << (t_compute - t_init) << "\n";
-        cout << "Gather: " << (t_gather - t_compute) << "\n";
-        cout << "Output: " << (t_output - t_gather) << "\n";
-        cout << "Total: " << (t_output - t_start) << "\n";
+        // cout << "Gather: " << (t_gather - t_compute) << "\n";
+        // cout << "Output: " << (t_output - t_gather) << "\n";
+        // cout << "Total: " << (t_init - t_start) << "\n";
     }
     return 0;
 }

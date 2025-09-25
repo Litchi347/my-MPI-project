@@ -134,11 +134,11 @@ int main(int argc, char* argv[]) {
     MPI_Finalize();
 
     if (rank == 0) {
-        cout << "==== Timing Breakdown (seconds) ====\n";
-        cout << "Initialization: " << (t_init - t_start) << "\n";
+        // cout << "==== Timing Breakdown (seconds) ====\n";
+        // cout << "Initialization: " << (t_init - t_start) << "\n";
         cout << "Computation: " << (t_compute - t_init) << "\n";
-        cout << "Gather: " << (t_gather - t_compute) << "\n";
-        cout << "Total: " << (t_init - t_start) << "\n";
+        // cout << "Gather: " << (t_gather - t_compute) << "\n";
+        // cout << "Total: " << (t_init - t_start) << "\n";
     }
     return 0;
 }
