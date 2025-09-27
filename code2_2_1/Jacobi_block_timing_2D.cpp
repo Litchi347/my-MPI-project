@@ -10,7 +10,14 @@ inline int idx(int i, int j, int mysize) {                                      
 }
 
 int main(int argc, char* argv[]) {
-	const int totalsize = 10000;                                                    // 增大计算量来体现不同进程数计算时的性能差异
+	int i_num = 5000;
+	int j_num = 5000;
+
+	if (argc > 1) {
+    	i_num = atoi(argv[1]);                                                      // 把命令行参数转成整数
+		j_num = atoi(argv[2]);
+	}
+	// const int totalsize = 20000;                                                    // 增大计算量来体现不同进程数计算时的性能差异
 	const int steps = 10;
 
 	MPI_Init(&argc, &argv);
@@ -27,14 +34,14 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 
-	if (totalsize % numprocs != 0) {
+	if (j_num % numprocs != 0) {
 		if (myid == 0) {
 			cerr << "Error: totalsize must be divisible by numprocs\n";
 		}
 		MPI_Finalize();
 		return 1;
 	}
-	const int mysize = totalsize / numprocs;
+	const int mysize = j_num / numprocs;
 
     // 输出会影响计算运行时间
 	// if (myid == 0) {
@@ -44,24 +51,24 @@ int main(int argc, char* argv[]) {
 	// }
 	// cout << "Process " << myid << " of " << numprocs << " is alive" << endl;
 
-	vector<double> a(totalsize * (mysize + 2), 0.0);
-	vector<double> b(totalsize * (mysize + 2), 0.0);
+	vector<double> a(i_num * (mysize + 2), 0.0);
+	vector<double> b(i_num * (mysize + 2), 0.0);
 
 	if (myid == 0) {
-		for (int i = 0; i < totalsize; i++) {
+		for (int i = 0; i < i_num; i++) {
 			a[idx(i, 1, mysize)] = 1.0;
 		}
 	}
 
 	if (myid == numprocs - 1) {
-		for (int i = 0; i < totalsize; i++) {
+		for (int i = 0; i < i_num; i++) {
 			a[idx(i, mysize, mysize)] = 1.0;
 		}
 	}
 
 	for (int j = 0; j < mysize + 2; j++) {
 		a[idx(0, j, mysize)] = 8.0;
-		a[idx(totalsize - 1, j, mysize)] = 1.0;
+		a[idx(i_num - 1, j, mysize)] = 1.0;
 	}
 
     // 记录运行时间，并且实现同步
@@ -71,7 +78,7 @@ int main(int argc, char* argv[]) {
 
 	// 创建一个MPI列类型，将其他进程的计算结果打包进行进程间通信
 	MPI_Datatype coltype;
-	MPI_Type_vector(totalsize, 1, mysize + 2, MPI_DOUBLE, &coltype);
+	MPI_Type_vector(i_num, 1, mysize + 2, MPI_DOUBLE, &coltype);
 	MPI_Type_commit(&coltype);
 
 	// 左右邻居进程标识，使用MPI_PROC_NULL便于边界处理
@@ -105,7 +112,7 @@ int main(int argc, char* argv[]) {
 		}
 
 		for (int j = begin_col; j <= end_col; j++) {
-			for (int i = 1; i < totalsize - 1; i++) {
+			for (int i = 1; i < i_num - 1; i++) {
 				b[idx(i, j, mysize)] =
 					0.25 * (a[idx(i, j + 1, mysize)]
 						+ a[idx(i, j - 1, mysize)]
@@ -114,7 +121,7 @@ int main(int argc, char* argv[]) {
 			}
 		}
 		for (int j = begin_col; j <= end_col; ++j) {
-			for (int i = 1; i < totalsize - 1; ++i) {
+			for (int i = 1; i < i_num - 1; ++i) {
 				a[idx(i, j, mysize)] = b[idx(i, j, mysize)];
 			}
 		}
