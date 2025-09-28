@@ -1,27 +1,9 @@
-# include <stdio.h>
-# include <omp.h>
-
-int main(){
-    int i,n=10;
-    float a[10],b[10],c[10];
-    for(int i=0;i<n;i++){
-        a[i] = i * 1.0;
-        b[i] = i * 2.0;
+// 在 OpenMP 的 parallel for 中，循环迭代变量 i 默认是私有的，每个线程都会有自己独立的 i
+// 不需要private(i)
+void simple(int n,float *a,float *b){
+    int i;
+#pragma omp parallel for                   // 把接下来的 for 循环并行化，自动把迭代分配给多个线程执行，循环变量默认私有，末尾有隐式同步
+    for(int i=1;i<n;i++){
+        b[i] = (a[i] + a[i-1]) / 2.0;
     }
-
-    #pragma omp parallel for
-    for(int i= 0;i<n;i++){
-        c[i] = a[i] + b[i];
-    }
-
-    for(i=0;i<n;i++){
-        printf("%f\n",c[i]);
-    }
-    return 0;
 }
-// void simple(int n,float *a,float *b){
-//     int i;
-//     for(int i=1;i<n;i++){
-//         b[i] = (a[i] + a[i-1]) / 2.0;      // i默认情况下是私有的
-//     }
-// }
