@@ -21,4 +21,14 @@ code3_2 对应1.2 并行架构：创建并行区域，程序生成多个线程�
 code3_3 对应1.3 openmp 中的 team 的概念 
 code3_4 对应1.4 嵌套并行的运行方式  
 code3_5 对应1.5 介绍 num_threads 子句和 omp_set_dynamic 函数的常见搭配  
-code3_6 对应1.7 介绍使用 nowait 子句进行性能优化的条件及特殊情况
+code3_6 对应1.7 介绍使用 nowait 子句进行性能优化的条件及特殊情况  
+code3_7 对应1.8 介绍使用 collapse 子句的用法：将多层循环展开到一维空间内分组进行迭代  
+code3_8 对应1.9 介绍使用 linear 子句的用法，如果 for 循环中有不止一个变量随着循环的迭代而变化，使用 linear 子句实现  
+code3_9 对应1.10 介绍使用 #pragma omp section 子句把一组互相独立的任务（非循环迭代）分配给多个线程去执行  
+code3_10 对应1.11 介绍firstprivate 子句的用法  
+code3_11 对应1.12 介绍 single 子句的用法  
+code3_12 对应1.14 介绍 master 子句的用法：只有主线程执行这段代码，其他线程直接跳过  
+code3_13 对应1.15 介绍 #pragma omp loop 与 #pragma omp for 有类似的功能，但是不止止支持 for 循环  
+code3_14 对应1.16 介绍并行随机访问迭代器循环  
+code3_15 对应1.17 介绍使用 omp_set_dynamic and omp_set_num_threads 实现线程数量的动态调整的具体实现方法  
+code3_16 对应1.18 介绍 omp_get_num_threads 子句的作用范围：只在并行内部使用才能得到当前并行线程的数量  
