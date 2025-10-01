@@ -1,24 +1,27 @@
 # include <vector>
 # include <iostream>
+# include <omp.h>
+
 using namespace std;
 
 void iterator_example(){
     vector<int> vec(23);
-    vector<int>::iterator it;
+    cout << "vec.size():" <<vec.size() <<" threads:" << omp_get_max_threads() << endl;
 
     #pragma omp parallel for default(none) shared(vec)
-    // 编译通过，但是运行不出结果
-    for(it = vec.begin();it < vec.end();it++){
-        *it = 42;
+
+    for(auto it = vec.begin();it < vec.end();it++){
         // do work with *it
+        *it = omp_get_thread_num();
     }
 
-    // for(int i=0;i<vec.size();i++){
-    //     vec[i] = 42;
+    // for(int i = 0;i < vec.size();i++){
+    //     // do work with *it
+    //     vec[i] = omp_get_thread_num();
     // }
 
-    for(int i=0;i<vec.size();i++){
-        cout << "vec[i]: " << vec[i] << endl;
+    for(int i = 0;i < vec.size();i++){
+        cout << "vec[" << i << "] : "  << vec[i] << endl;
     }
 }
 
