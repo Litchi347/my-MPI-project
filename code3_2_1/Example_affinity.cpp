@@ -14,7 +14,6 @@ void work(){
     #else
         cout >> "Thread " << thread_id " of " << num_threads << endl;
     #endif
-
 }
 
 int main(){
