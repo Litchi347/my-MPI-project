@@ -1,3 +1,5 @@
+// 线程亲和性（Thread Affinity）是指将线程绑定到特定的处理器核心上运行的机制
+// 通过设置线程亲和性，可以控制线程在哪些核心上执行，从而优化性能
 # include <iostream>
 # include <omp.h>
 
@@ -10,16 +12,28 @@ void work(){
     #ifdef _GNU_SOURCE
         #include<sched.h>                                      // 包含处理CPU调度相关功能的头文件
         int cpu_id = sched_getcpu();                           // 获取当前线程所在的CPU编号
-        cout << "Thread " << thread_id << " of " << num_threads << " running on CPU " << cpu_id << endl;
+        #pragma omp critical
+        {
+            // cout << "Thread " << thread_id << " of " << num_threads << " running on CPU " << cpu_id << endl;
+        }
+        #pragma omp critical
+        {
+            cout << "Thread " << thread_id << " of " << num_threads << " running on CPU " << cpu_id << endl;
+        }
     #else
+    #pragma ommp critical
+    {
         cout >> "Thread " << thread_id " of " << num_threads << endl;
+    }
     #endif
 }
 
 int main(){
     // #pragma omp parallel proc_bind(spread) num_threads(4)      // 线程会被均匀地分配到多个处理器上
     // #pragma omp parallel num_threads(25) proc_bind(spread)
-    #pragma omp parallel proc_bind(close) num_threads(4)
+    // #pragma omp parallel proc_bind(close) num_threads(4)       // 线程会被尽量分配到靠近主线程所在的处理器上运行
+    // #pragma omp parallel num_threads(16) proc_bind(close)
+    #pragma omp parallel proc_bind(master) num_threads(4)         // 所有线程都会到主线程所在的处理器上运行
     {
         work();
     }

@@ -25,10 +25,13 @@ code3_1_6 对应1.7 介绍使用 nowait 子句进行性能优化的条件及特�
 code3_1_7 对应1.8 介绍使用 collapse 子句的用法：将多层循环展开到一维空间内分组进行迭代  
 code3_1_8 对应1.9 介绍使用 linear 子句的用法，如果 for 循环中有不止一个变量随着循环的迭代而变化，使用 linear 子句实现  
 code3_1_9 对应1.10 介绍使用 #pragma omp section 子句把一组互相独立的任务（非循环迭代）分配给多个线程去执行  
-code3_1_10 对应1.11 介绍firstprivate 子句的用法  
+code3_1_10 对应1.11 介绍 firstprivate 子句的用法  
 code3_1_11 对应1.12 介绍 single 子句的用法  
 code3_1_12 对应1.14 介绍 master 子句的用法：只有主线程执行这段代码，其他线程直接跳过  
 code3_1_13 对应1.15 介绍 #pragma omp loop 与 #pragma omp for 有类似的功能，但是不止止支持 for 循环  
 code3_1_14 对应1.16 介绍并行随机访问迭代器循环  
 code3_1_15 对应1.17 介绍使用 omp_set_dynamic and omp_set_num_threads 实现线程数量的动态调整的具体实现方法  
 code3_1_16 对应1.18 介绍 omp_get_num_threads 子句的作用范围：只在并行内部使用才能得到当前并行线程的数量  
+code3_2_1 对应2.1 介绍线程亲和性（Thread Affinity）的三种形式  
+code3_2_2 对应2.2 介绍 affinity 的几个参数和使用方式  
+code3_2_3 对应2.3 介绍
