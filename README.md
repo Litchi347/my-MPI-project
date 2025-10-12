@@ -34,4 +34,7 @@ code3_1_15 对应1.17 介绍使用 omp_set_dynamic and omp_set_num_threads 实�
 code3_1_16 对应1.18 介绍 omp_get_num_threads 子句的作用范围：只在并行内部使用才能得到当前并行线程的数量  
 code3_2_1 对应2.1 介绍线程亲和性（Thread Affinity）的三种形式  
 code3_2_2 对应2.2 介绍 affinity 的几个参数和使用方式  
-code3_2_3 对应2.3 介绍
+code3_2_3 对应2.3 介绍线程亲和性显示和调试的三种方法  
+code3_2_4 对应2.4 OpenMP 多层嵌套并行示例  
+code3_6_1 对应6.1 同步机制中临界区的概念  
+

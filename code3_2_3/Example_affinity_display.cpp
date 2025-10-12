@@ -105,54 +105,67 @@
 #include <string.h>
 #include <omp.h>
 
-#define FORMAT_STORE 80
-#define BUFFER_STORE 80
+// 定义了固定大小的缓冲区容量
+#define FORMAT_STORE 80                                                             // 存储亲和性格式字符串的缓冲区大小
+#define BUFFER_STORE 80                                                             // 存储每个线程的亲和性信息字符串的缓冲区大小
 
 int main(void)
 {
-    int i,n,thrd_num,max_req_store;
-    size_t nchars;
+    int n,thrd_num,max_req_store;
+    size_t nchars;                                                                  // size_t 表示无符号整型
 
     char default_format[FORMAT_STORE];
-    char my_format[] = "host=%20H thrd_num=%0.4n binds_to=%A";
+    char my_format[] = "host=%20H thrd_num=%0.4n binds_to=%A";                      // %H：主机名，%n：线程号，%A：亲和性掩码（0-19表示该线程可以运行在系统的所有20个逻辑CPU核心上
     char **buffer;
 
-    nchars = omp_get_affinity_format(default_format,(size_t)FORMAT_STORE);
+    // 获取默认格式
+    nchars = omp_get_affinity_format(default_format,(size_t)FORMAT_STORE);          // 获取当前亲和性格式字符串，返回实际字符串长度
     printf("Default Affinity Format is:%s\n",default_format);
 
     if(nchars >= FORMAT_STORE){
         printf("Caution:Reported Format is truncated. Increase\n");
-        printf("    FORMAT_STORE to %d.\n",nchars + 1);
+        printf("    FORMAT_STORE to %d.\n",nchars+1);
     }
-    omp_set_affinity_format(my_format);
+
+    // 设置自定义格式
+    omp_set_affinity_format(my_format);                                             // 设置亲和性格式字符串
     printf("Affinity Format set to:%s\n",my_format);
 
+    // 分配内存
     n = omp_get_num_procs();
     buffer = (char **)malloc(sizeof(char *) * n);
     for(int i = 0;i < n;i++){
         buffer[i] = (char *)malloc(sizeof(char) * BUFFER_STORE);
     }
     max_req_store = 0;
+
+    // 并行区域：只捕获亲和性信息
     #pragma omp parallel private(thrd_num,nchars) reduction(max:max_req_store)
     {
         if(omp_get_num_threads() > n){
             exit(1);
         }
+
         thrd_num = omp_get_thread_num();
-        nchars = omp_capture_affinity(buffer[thrd_num],(size_t)BUFFER_STORE,NULL);
+        nchars = omp_capture_affinity(buffer[thrd_num],(size_t)BUFFER_STORE,NULL);  // 捕获当前形成的亲和性信息，如果 format 为 NULL,使用之前设置过的格式
+
         if(nchars > max_req_store){
             max_req_store = nchars;
         }
-        for(i = 0;i < n;i++){
-            printf("thrd_num= %d,affinity:%s\n",i,buffer[i]);
-        }
-        if(max_req_store >= BUFFER_STORE){
-            printf("Caution:Affinity string truncated.  Increase\n");
-            printf("    BUFFER_STORE to %d\n",max_req_store + 1);
-        }
-        for(int i =0 ;i<n;i++){
-            free(buffer[i]);
-        }
-        return 0;
     }
+    for(int i = 0;i < n;i++){
+        printf("thrd_num= %d,affinity:%s\n",i,buffer[i]);
+    }
+
+    // 检查缓冲区是否足够
+    if(max_req_store >= BUFFER_STORE){
+        printf("Caution:Affinity string truncated.  Increase\n");
+        printf("    BUFFER_STORE to %d\n",max_req_store + 1);
+    }
+
+    // 清理内存
+    for(int i =0 ;i<n;i++){
+        free(buffer[i]);
+    }
+    return 0;
 }
