@@ -1,4 +1,4 @@
-// 基于release /acquire 语义的同步
+// 基于 release /acquire 语义的同步
 # include <stdio.h>
 # include <omp.h>
 
