@@ -1,4 +1,5 @@
-// 不正确的写法：同一个内存空间不能通过不同类型进行原子访问
+// 不正确的写法：同一个内存空间不能通过不同类型进行原子访问；
+
 // 规范：所有对同一内存位置执行的原子操作，必须是相同类型、相同语义的操作
 void atomic_wrong()
 {
@@ -9,5 +10,22 @@ void atomic_wrong()
             u.n++;
         #pragma omp atomic update    // 第一次：对 u.x (float) 做原子操作
             u.x += 1.0;
+    }
+}
+
+void atomic_wrong2(){
+    int x;
+    int *i;
+    float *r;
+
+    i = &x;
+    r = (float *)&x;
+
+    #pragma omp parallel
+    {
+        #pragma omp atomic update    // 两个原子操作访问的是同一个内存位置，一个当作 int 类型，另一个当作 float 类型
+            *i += 1;
+        #pragma omp atomic update
+            *r += 1.0;
     }
 }
