@@ -45,3 +45,4 @@ code3_6_6 对应6.6 说明当 #pragma omp flush 不带变量列表时，哪些�
 code3_6_7 对应6.7 描述基于release /acquire 语义的同步  
 code3_6_8 对应6.8 使用 order 子句指定代码必须按顺序执行  
 code3_6_9 对应6.9 演示了 OpenMP 中的依赖对象（depend object）机制  
+code3_6_10 对应6.10 跨迭代依赖示例  
