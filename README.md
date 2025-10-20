@@ -46,3 +46,7 @@ code3_6_7 对应6.7 描述基于release /acquire 语义的同步
 code3_6_8 对应6.8 使用 order 子句指定代码必须按顺序执行  
 code3_6_9 对应6.9 演示了 OpenMP 中的依赖对象（depend object）机制  
 code3_6_10 对应6.10 跨迭代依赖示例  
+code3_6_11 对应6.11 锁机制  
+code3_7_1 对应7.1 threadprivate 的使用方法  
+code3_7_2 对应7.2 default(none) 子句的作用  
+code3_7_3 对应7.3 private 子句的作用并说明全局变量与线程私有副本的区别  
