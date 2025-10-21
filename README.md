@@ -50,3 +50,5 @@ code3_6_11 对应6.11 锁机制
 code3_7_1 对应7.1 threadprivate 的使用方法  
 code3_7_2 对应7.2 default(none) 子句的作用  
 code3_7_3 对应7.3 private 子句的作用并说明全局变量与线程私有副本的区别  
+code3_7_7 对应7.7 firstprivate 子句为指针变量分配线程副本时为浅拷贝，所有线程指向同一地址  
+code3_7_8 对应7.8 lastprivate 子句的用法  
