@@ -2,6 +2,7 @@
     "files.associations": {
         "iostream": "cpp",
         "atomic": "cpp",
-        "ranges": "cpp"
+        "ranges": "cpp",
+        "functional": "c"
     }
 }
