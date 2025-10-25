@@ -3,6 +3,9 @@
         "iostream": "cpp",
         "atomic": "cpp",
         "ranges": "cpp",
-        "functional": "c"
+        "functional": "c",
+        "random": "c",
+        "limits": "c",
+        "semaphore": "c"
     }
 }

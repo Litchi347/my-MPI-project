@@ -100,5 +100,6 @@ int main(){
             asum += a[i];
         }
     }
+ 
     printf("asum=%d\n",asum);
 }
