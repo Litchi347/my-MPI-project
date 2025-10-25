@@ -58,3 +58,6 @@ code3_7_9_3 对应了7.9.3 的隐性映射行为，保证了设备与主机上�
 code3_7_9_4 对应了7.9.4 展示了如何把设备端任务(target task)纳入任务归约(task reduction)中的三种方法  
 code3_7_9_5 对应了7.9.5 展示了如何通过两种不同方式使用 taskloop reduction 实现数组归约  
 code3_7_9_6 对应了7.9.6 展示了用户自定义归约(declare reduction)的用法  
+code3_7_10 对应了7.10 介绍了 inscan 子句的作用和用法  
+code3_7_11 对应了7.11 介绍了 copyin 子句的作用：在各线程进入并行区域时，把主线程中 threadprivate 变量的复制给每个线程的对应副本  
+code3_7_12 对应了7.12 介绍了 copyin 子句的作用（在各线程进入并行区域时，把主线程中 threadprivate 变量的复制给每个线程的对应副本）和 copyprivate 子句使用的注意事项  
