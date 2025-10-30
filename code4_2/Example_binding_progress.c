@@ -4,7 +4,7 @@
 
 // void print_running_cpu(){
 //     char qry_cmd[1024] = {0};
-//     sprintf(qry_cmd,"ps -o pid,psr -p %d | tail -n 1 | awk {'print $2'}",getpid());
+//     sprintf(qry_cmd,"ps -o pid,psr -p %d | tail -n 1 | awk '{print $2}'",getpid());
 //     FILE *fp = popen(qry_cmd,"r");
 //     if (fp == NULL){
 //         return;

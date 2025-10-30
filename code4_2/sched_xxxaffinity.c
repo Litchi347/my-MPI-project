@@ -8,7 +8,7 @@
 
 // void print_running_cpu(){
 //     char qry_cmd[1024] = { 0 };
-//     sprintf(qry_cmd,"ps -o pid,spid,psr -T -p %d | grep %d | tail -n 1 | awk{'print $3'}",getpid(),gettid());
+//     sprintf(qry_cmd, "ps -o pid,spid,psr -T -p %d | grep %d | tail -n 1 | awk '{print $3}'",getpid(),gettid());
 //     FILE *fp=popen(qry_cmd,"r");
 //     if(fp == NULL){
 //         return ;
