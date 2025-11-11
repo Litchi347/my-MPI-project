@@ -1,26 +1,33 @@
+# 默认开启调试模式(DEBUG=1)
 DEBUG ?= 1
+PROFILE ?= 0
+
+# 编译器设置
+CXX = mpiicpx                             # MPI C++编译器
+
+# 模式切换逻辑
 ifeq ($(DEBUG),1)
+	# 性能剖析模式
+	CXXFLAGS = -Wall -pg -g -O2
+	MODE = Profile_Mode_pg
+else ifeq ($(DEBUG),1)
+	# 调试模式
 	CXXFLAGS = -Wall -g -O0
-	MODE = Debug_Mode_g_O0
+	MODE = DEBUG_Mode_g_O0
 else
-	CXXFLAGS = -Wall -O2
+	# 发布模式
+	CXXFLAGS = -wall -O2
 	MODE = Release_Mode_O2
 endif
 
-CXX = mpiicpx                             # 定义变量CXX,表示要用到的C++编译器/命令
-# CXXFLAGS = -Wall -O2                      # 定义编译选项变量CXXFLAGS,-Wall打开常见警告,-O2表示优化等级
+# 目标与文件设置
+TARGET = program                          # 最终生成的可执行文件名
+SRCS = $(wildcard *.cpp)                  # 自动收集所有的 .cpp 文件
+OBJS = $(SRCS:.cpp=.o)                    # 对应的 .o 文件列表
 
-TARGET = program                          # 定义最终生成的可执行文件名
-
-SRCS = $(wildcard *.cpp)                  # 使用make的wildcard函数获取当前目录下所有以.cpp结尾的源文件收集到变量SRCS中
-
-OBJS = $(SRCS:.cpp=.o)                    # make的文本替换写法,把SRCS中的.cpp替换成.o,生成目标文件列表
-
+# 生成可执行文件
 all: $(TARGET)
 
-# 生成最终可执行文件的规则:
-# 左边$(TARGET)表示目标文件,右边$(OBJS)表示依赖的目标文件
-# $@表示目标文件,$^表示所有依赖文件
 $(TARGET): $(OBJS)
 	@echo "Building $(TARGET) in $(MODE)"
 	$(CXX) $(CXXFLAGS) -o $@ $(OBJS)
@@ -29,6 +36,25 @@ $(TARGET): $(OBJS)
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+# 性能剖析专用目标
+profile:clean
+	@echo ">>> Building with profiling enabled (-pg) ..."
+	$(MAKE) PROFILE=1
+	@echo ">>> Running program to generate gmon.out ..."
+	mpirun -np 4 ./$(TARGET)
+	@echo ">>> generating gprof report ..."
+	gprof -b ./$(TARGET) gmon.out > gprof_report.txt
+	@echo ">>> Profiling complete! See gprof_report.txt"
+
+# # 图像化性能结果
+# profile-vis:profile
+# 	@echo ">>> generating call graph SVG ..."
+# 	gprof ./$(TARGET) > profile.txt
+# 	gprof2dot.py profile.txt > profile.dot
+# 	dot -Tsvg -o gprof.svg profile.dot
+# 	@echo ">> Done! Open gprof.svg in browser."
+
 # 清理命令
 clean:
-	rm -f $(TARGET) $(OBJS)
+	rm -f $(TARGET) $(OBJS) gmon.out gprof_report.txt profile.txt profile.dot gprof.svg
+	@echo "clean complete."
