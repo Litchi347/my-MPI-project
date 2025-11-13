@@ -64,3 +64,50 @@ code3_7_12 对应了7.12 介绍了 copyin 子句的作用（在各线程进入�
 
 code4_1 对应任务4.1 代码任务：设置一个非平衡循环计算，内层循环为规模不同的数组加法，进行三种调度对比、不同线程数对比  
 code4_2 对应任务4.2 ：CPU 绑定的几种实现，讲述了绑定线程和进程的命令语句 以及 使用 sched_xxxaffinity 和 pthread 接口实现进程和线程的绑定的示例  
+
+任务5 介绍了一系列性能调试与分析工具，包括 gprof、vtune 等，使用 code2_4_1 作为实例代码，常见命令及其作用有：  
+## 1. GNU 工具链 (gprof)
+- `mpicxx -O2 -g -pg -o jacobi_mpi_profile jacobi_mpi.cpp` ：编译程序并启用 gprof 性能分析  
+- `./jacobi_mpi_profile` ：运行程序，生成 gmon.out  
+- `gprof ./jacobi_mpi_profile gmon.out > analysis.txt` ：生成性能分析报告  
+
+## 2. GDB 调试
+- `break func_name` ：设置断点  
+- `run` ：启动程序  
+- `next` / `step` ：单步执行  
+- `print var` ：打印变量  
+- `info threads` ：查看线程  
+- `thread <id>` ：切换线程  
+- `continue` ：继续执行  
+- 延迟断点提示：`make breakpoint pending on future shared library load?`  
+
+## 3. CPU 亲和性与线程绑定
+- `pthread_self()` ：获取当前线程句柄  
+- `gettid()` ：获取线程系统 ID  
+- `sched_setaffinity(pid, sizeof(mask), &mask)` ：绑定进程/线程到指定核心  
+- `pthread_setaffinity_np(pthread, sizeof(mask), &mask)` ：绑定 pthread 线程到核心  
+- `CPU_ZERO(&mask)` ：初始化 CPU 掩码  
+- `CPU_SET(n, &mask)` ：设置 CPU 掩码  
+- `sched_getcpu()` ：查询当前线程运行的 CPU 核心  
+
+## 4. OpenMP
+- `#pragma omp parallel for schedule(static|dynamic|guided) num_threads(n)` ：循环并行化  
+- `shared(var)` ：线程共享变量  
+- `private(var)` ：线程私有变量  
+- `reduction(+:var)` ：归约操作  
+
+## 5. Intel VTune Profiler
+- `source /opt/intel/oneapi/vtune/latest/env/vars.sh` ：设置 VTune 环境  
+- `vtune -collect hotspots -result-dir vtune_result ./jacobi_mpi_profile` ：热点分析  
+- `vtune -collect threading -result-dir vtune_thread ./jacobi_mpi_profile` ：线程分析  
+- `vtune -collect memory-access -result-dir vtune_mem ./jacobi_mpi_profile` ：内存访问分析  
+- `vtune -report summary -result-dir vtune_result` ：生成汇总报告  
+- `vtune-gui` ：图形界面查看结果  
+
+## 6. MPI
+- `mpicxx -O2 -g -pg -o jacobi_mpi_profile jacobi_mpi.cpp` ：编译 MPI 程序  
+- `mpirun -np 8 ./jacobi_mpi_profile` ：启动 8 个进程并行执行  
+
+## 7. 系统验证与监控
+- `htop` ：查看 CPU 核、线程分布  
+- `ps -L` ：查看线程及 CPU 核心分布 
