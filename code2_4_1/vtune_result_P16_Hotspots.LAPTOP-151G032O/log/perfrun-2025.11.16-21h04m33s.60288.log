@@ -1,0 +1,104 @@
+2 [132644350109568] INFO perfrun.launcher <> - Launcher main begin
+3 [132644350109568] INFO perfrun.launcher <> - MessageCatalogInit finished
+3 [132644350109568] INFO perfrun.launcher <> - Launcher instance created
+3 [132644350109568] INFO perfrun.launcher <> - argc = 7; cmdline = /opt/intel/oneapi/vtune/2025.7/bin64/amplxe-runss --ui-output-format xml --ui-output-fd 10 --option-file /home/liuxueer/projects/my-MPI-project/code2_4_1/vtune_result_P16_Hotspots.LAPTOP-151G032O/config/runss.options.12 
+47 [132644350109568] INFO perfrun.perfcollector <> - SEP tool path: /opt/intel/oneapi/vtune/2025.7/bin64/sep
+55 [132644350109568] INFO perfrun.launcher <> - create msngr2::ICliToolContext
+56 [132644350109568] INFO perfrun.launcher <> - create file finder object
+56 [132644350109568] INFO perfrun.launcher <> - create a result directory: pattern = /home/liuxueer/projects/my-MPI-project/code2_4_1/vtune_result_P16_Hotspots.LAPTOP-151G032O pid = 4294967295
+57 [132644350109568] INFO perfrun.sdk <> - checked that the directory /home/liuxueer/projects/my-MPI-project/code2_4_1/vtune_result_P16_Hotspots.LAPTOP-151G032O is a local directory
+57 [132644350109568] INFO perfrun.sdk <> - the directory /home/liuxueer/projects/my-MPI-project/code2_4_1/vtune_result_P16_Hotspots.LAPTOP-151G032O is a local directory with FS type ID 61267
+57 [132644350109568] INFO perfrun.launcher <> - create data directory = /home/liuxueer/projects/my-MPI-project/code2_4_1/vtune_result_P16_Hotspots.LAPTOP-151G032O/data.8
+57 [132644350109568] INFO perfrun.launcher <> - Creating the master collection flag
+57 [132644350109568] INFO perfrun.launcher <> - Done creating the master collection flag
+59 [132644192904896] INFO perfrun.launcher <> - plugin [remoteplug] was disabled because it doesn't support the given collection type.
+60 [132644192904896] INFO perfrun.sdk <> - Allocating TMU :/home/liuxueer/projects/my-MPI-project/code2_4_1/vtune_result_P16_Hotspots.LAPTOP-151G032O/data.8/systemcollector-60288-LAPTOP-151G032O.sc
+60 [132644192904896] INFO perfrun.launcher <> - plugin [vdso] was disabled because it doesn't support the given collection type.
+60 [132644192904896] INFO perfrun.launcher <> - plugin [ptracecollector] was disabled because it doesn't support the given collection type.
+60 [132644192904896] INFO perfrun.launcher <> - plugin [gpu] was disabled because it doesn't support the given collection type.
+60 [132644192904896] INFO perfrun.launcher <> - plugin [] was disabled because it doesn't support the given collection type.
+60 [132644192904896] INFO perfrun.launcher <> - plugin [] was disabled because it doesn't support the given collection type.
+60 [132644192904896] INFO perfrun.launcher <> - plugin [] was disabled because it doesn't support the given collection type.
+60 [132644192904896] INFO perfrun.mrte <> - system-wide mode is 0
+60 [132644192904896] INFO perfrun.mrte <> - Getting  mrte profiling environment ...
+67 [132644192904896] INFO perfrun.mrte <> - INTEL_MRTE_DATA_DIR=/home/liuxueer/projects/my-MPI-project/code2_4_1/vtune_result_P16_Hotspots.LAPTOP-151G032O/data.8
+67 [132644192904896] INFO perfrun.mrte <> - INTEL_MRTE_HOST_NAME=LAPTOP-151G032O
+67 [132644192904896] INFO perfrun.mrte <> - JAVA_TOOL_OPTIONS=-agentlib:amplxe_samplingmrte_javaprof_1.0 -Dsun.boot.library.path=/opt/intel/oneapi/vtune/2025.7/lib32/runtime:/opt/intel/oneapi/vtune/2025.7/lib64/runtime
+67 [132644192904896] INFO perfrun.mrte <> - LD_LIBRARY_PATH=/opt/intel/oneapi/vtune/2025.7/lib32/runtime:/opt/intel/oneapi/vtune/2025.7/lib64/runtime:/opt/intel/oneapi/tcm/1.4/lib:/opt/intel/oneapi/umf/1.0/lib:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8:/opt/intel/oneapi/pti/0.13/lib:/opt/intel/oneapi/mpi/2021.17/opt/mpi/libfabric/lib:/opt/intel/oneapi/mpi/2021.17/lib:/opt/intel/oneapi/mkl/2025.3/lib:/opt/intel/oneapi/ishmem/1.5/lib:/opt/intel/oneapi/ippcp/2025.3/lib/:/opt/intel/oneapi/ipp/2022.3/lib:/opt/intel/oneapi/dnnl/2025.3/lib:/opt/intel/oneapi/debugger/2025.3/opt/debugger/lib:/opt/intel/oneapi/dal/2025.9/lib:/opt/intel/oneapi/compiler/2025.3/opt/compiler/lib:/opt/intel/oneapi/compiler/2025.3/lib:/opt/intel/oneapi/ccl/2021.17/lib/
+67 [132644192904896] INFO perfrun.mrte <> - CORECLR_ENABLE_PROFILING=1
+67 [132644192904896] INFO perfrun.mrte <> - CORECLR_PROFILER={AA5E4821-E3B1-479c-B7FF-5AD047D22CED}
+67 [132644192904896] INFO perfrun.mrte <> - CORECLR_PROFILER_PATH=/opt/intel/oneapi/vtune/2025.7/lib64/libamplxe_samplingmrte_clrprof_1.0.so
+67 [132644192904896] INFO perfrun.mrte <> - INTEL_MRTE_PROFILER_MODE=mixed
+67 [132644192904896] INFO perfrun.mrte <> - Data directory: /home/liuxueer/projects/my-MPI-project/code2_4_1/vtune_result_P16_Hotspots.LAPTOP-151G032O/data.8
+67 [132644192904896] INFO perfrun.mrte <> - Mrte plugin is initialized
+67 [132644192904896] INFO perfrun.launcher <> - plugin [emon] was disabled because it doesn't support the given collection type.
+67 [132644192904896] INFO perfrun.launcher <> - plugin [cuscol] was disabled because it doesn't support the given collection type.
+67 [132644192904896] INFO perfrun.launcher <> - plugin [stdsrc] was disabled because it doesn't support the given collection type.
+67 [132644192904896] INFO perfrun.launcher <> - plugin [sep] was disabled because it doesn't support the given collection type.
+67 [132644192904896] INFO perfrun.launcher <> - plugin [vtsspp] was disabled because it doesn't support the given collection type.
+67 [132644192904896] INFO perfrun.launcher <> - plugin [perf] was disabled because it doesn't support the given collection type.
+67 [132644192904896] INFO perfrun.launcher <> - plugin [aoclprofile] was disabled because it doesn't support the given collection type.
+67 [132644192904896] INFO perfrun.tpss <> - initialize tpss controller
+67 [132644192904896] INFO perfrun.tpss <> - configure collection mode: value = cpu:counters:nostack
+67 [132644192904896] INFO perfrun.tpss <> - configure collection mode: value = cpu:stack
+67 [132644192904896] INFO perfrun.tpss <> - default obj-size-min=1024
+67 [132644192904896] INFO perfrun.tpss <> - default hash-table-size=0
+67 [132644192904896] INFO perfrun.launcher <> - plugin [media] was disabled because it doesn't support the given collection type.
+67 [132644192904896] INFO perfrun.launcher <> - plugin [] was disabled because it doesn't support the given collection type.
+67 [132644192904896] INFO perfrun.launcher <> - plugin [] was disabled because it doesn't support the given collection type.
+67 [132644192904896] INFO perfrun.launcher <> - plugin [parallelfs] was disabled because it doesn't support the given collection type.
+67 [132644192904896] INFO perfrun.launcher <> - plugin [power] was disabled because it doesn't support the given collection type.
+67 [132644192904896] INFO perfrun.launcher <> - plugin [] was disabled because it doesn't support the given collection type.
+67 [132644192904896] INFO perfrun.launcher <> - plugin [] was disabled because it doesn't support the given collection type.
+67 [132644192904896] INFO perfrun.launcher <> - plugin [] was disabled because it doesn't support the given collection type.
+67 [132644192904896] INFO perfrun.launcher <> - plugin [l0_metrics] was disabled because it doesn't support the given collection type.
+67 [132644192904896] INFO perfrun.launcher <> - plugin [stall_reasons] was disabled because it doesn't support the given collection type.
+67 [132644350109568] INFO perfrun.launcher <> - set environment variable: LD_LIBRARY_PATH = /opt/intel/oneapi/vtune/2025.7/lib32/runtime:/opt/intel/oneapi/vtune/2025.7/lib64/runtime:/opt/intel/oneapi/tcm/1.4/lib:/opt/intel/oneapi/umf/1.0/lib:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8:/opt/intel/oneapi/pti/0.13/lib:/opt/intel/oneapi/mpi/2021.17/opt/mpi/libfabric/lib:/opt/intel/oneapi/mpi/2021.17/lib:/opt/intel/oneapi/mkl/2025.3/lib:/opt/intel/oneapi/ishmem/1.5/lib:/opt/intel/oneapi/ippcp/2025.3/lib/:/opt/intel/oneapi/ipp/2022.3/lib:/opt/intel/oneapi/dnnl/2025.3/lib:/opt/intel/oneapi/debugger/2025.3/opt/debugger/lib:/opt/intel/oneapi/dal/2025.9/lib:/opt/intel/oneapi/compiler/2025.3/opt/compiler/lib:/opt/intel/oneapi/compiler/2025.3/lib:/opt/intel/oneapi/ccl/2021.17/lib/
+67 [132644350109568] INFO perfrun.launcher <> - set environment variable: INTEL_LIBITTNOTIFY32 = /opt/intel/oneapi/vtune/2025.7/lib32/runtime/libittnotify_collector.so
+68 [132644350109568] INFO perfrun.launcher <> - set environment variable: INTEL_LIBITTNOTIFY64 = /opt/intel/oneapi/vtune/2025.7/lib64/runtime/libittnotify_collector.so
+68 [132644350109568] INFO perfrun.launcher <> - set environment variable: INTEL_ITTNOTIFY_GROUPS = 
+68 [132644350109568] INFO perfrun.launcher <> - set environment variable: INTEL_JIT_PROFILER32 = /opt/intel/oneapi/vtune/2025.7/lib32/runtime/libittnotify_collector.so
+68 [132644350109568] INFO perfrun.launcher <> - set environment variable: INTEL_JIT_PROFILER64 = /opt/intel/oneapi/vtune/2025.7/lib64/runtime/libittnotify_collector.so
+69 [132644350109568] INFO perfrun.launcher <> - set environment variable: CCL_ITT_LEVEL = 1
+69 [132644350109568] INFO perfrun.launcher <> - set environment variable: ENABLE_JITPROFILING = 1
+69 [132644350109568] INFO perfrun.launcher <> - set environment variable: CL_CONFIG_USE_VTUNE = True
+69 [132644350109568] INFO perfrun.launcher <> - set environment variable: LD_PRELOAD = libittnotify_collector.so:
+69 [132644350109568] INFO perfrun.launcher <> - set environment variable: KMP_FORKJOIN_FRAMES = 0
+70 [132644350109568] INFO perfrun.launcher <> - set environment variable: KMP_FORKJOIN_FRAMES_MODE = 0
+70 [132644350109568] INFO perfrun.launcher <> - set environment variable: INTEL_MRTE_DATA_DIR = /home/liuxueer/projects/my-MPI-project/code2_4_1/vtune_result_P16_Hotspots.LAPTOP-151G032O/data.8
+70 [132644350109568] INFO perfrun.launcher <> - set environment variable: INTEL_MRTE_HOST_NAME = LAPTOP-151G032O
+70 [132644350109568] INFO perfrun.launcher <> - set environment variable: JAVA_TOOL_OPTIONS = -agentlib:amplxe_samplingmrte_javaprof_1.0 -Dsun.boot.library.path=/opt/intel/oneapi/vtune/2025.7/lib32/runtime:/opt/intel/oneapi/vtune/2025.7/lib64/runtime
+70 [132644350109568] INFO perfrun.launcher <> - set environment variable: LD_LIBRARY_PATH = /opt/intel/oneapi/vtune/2025.7/lib32/runtime:/opt/intel/oneapi/vtune/2025.7/lib64/runtime:/opt/intel/oneapi/tcm/1.4/lib:/opt/intel/oneapi/umf/1.0/lib:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8:/opt/intel/oneapi/pti/0.13/lib:/opt/intel/oneapi/mpi/2021.17/opt/mpi/libfabric/lib:/opt/intel/oneapi/mpi/2021.17/lib:/opt/intel/oneapi/mkl/2025.3/lib:/opt/intel/oneapi/ishmem/1.5/lib:/opt/intel/oneapi/ippcp/2025.3/lib/:/opt/intel/oneapi/ipp/2022.3/lib:/opt/intel/oneapi/dnnl/2025.3/lib:/opt/intel/oneapi/debugger/2025.3/opt/debugger/lib:/opt/intel/oneapi/dal/2025.9/lib:/opt/intel/oneapi/compiler/2025.3/opt/compiler/lib:/opt/intel/oneapi/compiler/2025.3/lib:/opt/intel/oneapi/ccl/2021.17/lib/
+71 [132644350109568] INFO perfrun.launcher <> - set environment variable: CORECLR_ENABLE_PROFILING = 1
+71 [132644350109568] INFO perfrun.launcher <> - set environment variable: CORECLR_PROFILER = {AA5E4821-E3B1-479c-B7FF-5AD047D22CED}
+71 [132644350109568] INFO perfrun.launcher <> - set environment variable: CORECLR_PROFILER_PATH = /opt/intel/oneapi/vtune/2025.7/lib64/libamplxe_samplingmrte_clrprof_1.0.so
+71 [132644350109568] INFO perfrun.launcher <> - set environment variable: INTEL_MRTE_PROFILER_MODE = mixed
+71 [132644350109568] INFO perfrun.launcher <> - RpcServer: run RPC server to handle requests
+72 [132644350109568] INFO perfrun.launcher <> - Launcher: command line to start before modification = ./program 5000 5000
+72 [132644350109568] INFO perfrun.launcher <> - Launcher: command line to start after modification = /opt/intel/oneapi/vtune/2025.7/bin64/pin -error_file /home/liuxueer/projects/my-MPI-project/code2_4_1/vtune_result_P16_Hotspots.LAPTOP-151G032O/data.8/pinerr.tpsslog -detach_reattach -follow_execv -tool_load_option deepbind -t64 /opt/intel/oneapi/vtune/2025.7/lib64/libtpsstool.so -t /opt/intel/oneapi/vtune/2025.7/lib32/libtpsstool.so -server_name tpss_ipc.60288 -prd_dir /opt/intel/oneapi/vtune/2025.7 -- ./program 5000 5000
+172 [132644350109568] INFO perfrun.launcher <> - ProcessCreator object was created
+173 [132644350109568] INFO perfrun.launcher <> - Launcher: the process was started in suspend mode
+174 [132644192904896] WARN perfrun.system <> - Could not do anything with /sys/kernel/debug/kvm: boost::filesystem::status: Permission denied [system:13]: "/sys/kernel/debug/kvm", at file: vcs/perfrun1/plugins/system/src/trace_writer.cpp:791
+174 [132644192904896] WARN perfrun.system <> - Folder "/var/run/libvirt/qemu/"doesn't exist, at file: vcs/perfrun1/plugins/system/src/trace_writer.cpp:804
+174 [132644192904896] INFO perfrun.itt <> - start itt controller for pid #60397
+174 [132644192904896] INFO perfrun.tpss <> - start tpss controller for pid #60397
+225 [132644350109568] INFO perfrun.launcher <> - Launcher: all plugins were started
+225 [132644350109568] INFO perfrun.launcher <> - DirectoryMonitor object was created
+225 [132644350109568] INFO perfrun.launcher <> - DirectoryMonitor: a callback was added
+225 [132644350109568] INFO perfrun.launcher <> - DirectoryMonitor was started with pingTime = 1000
+225 [132644350109568] INFO perfrun.launcher <> - DeadlineTimer is going to be constructed
+225 [132644350109568] INFO perfrun.launcher <> - DeadlineTimer: a callback was added
+226 [132644350109568] INFO perfrun.launcher <> - Launcher: resume the profiled application and  wait its termination or stop command
+1889 [132644350109568] INFO perfrun.launcher <> - Launcher: the profiled application was terminated  with exit code = 1
+1934 [132644192904896] INFO perfrun.itt <> - detach itt controller
+1934 [132644192904896] INFO perfrun.itt <> - detach itt controller done
+1934 [132644192904896] INFO perfrun.tpss <> - stop tpss controller
+1934 [132644192904896] INFO perfrun.sdk <> - De-allocating TMU: /home/liuxueer/projects/my-MPI-project/code2_4_1/vtune_result_P16_Hotspots.LAPTOP-151G032O/data.8/systemcollector-60288-LAPTOP-151G032O.sc
+1934 [132644192904896] INFO perfrun.system <> - closed the system trace file: /home/liuxueer/projects/my-MPI-project/code2_4_1/vtune_result_P16_Hotspots.LAPTOP-151G032O/data.8/systemcollector-60288-LAPTOP-151G032O.sc
+1935 [132644350109568] INFO perfrun.launcher <> - Launcher: all plugins were stopped.
+1935 [132644350109568] INFO perfrun.launcher <> - DeadlineTimer is going to be destroyed
+1935 [132644350109568] INFO perfrun.launcher <> - DeadlineTimer was destroyed
+1935 [132644350109568] INFO perfrun.launcher <> - DirectoryMonitor object was destroyed
+1935 [132644350109568] WARN perfrun.launcher <> - Stop command is ignored because it is received when collection is already stopped, at file: vcs/perfrun1/launcher/src/command_handler.cpp:226
+1935 [132644350109568] INFO perfrun.launcher <> - Application exit code: 1
+1935 [132644350109568] INFO perfrun.launcher <> - Exit code: 4
