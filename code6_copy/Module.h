@@ -3,6 +3,9 @@
 # include <omp.h>
 # include <algorithm>
 
+// 使用宏定义将二维索引映射到一维索引
+#define IDX(i,j) (i * nj + j)
+
 // 最多四个非阻塞通信：左发/左收/右发/右收
 extern MPI_Request request[4];
 extern MPI_Status status[4];
@@ -35,9 +38,9 @@ extern double cfl;
 
 extern double* x;
 extern double* y;
-extern double** f;
-extern double** fm1;
-extern double** fm2;
+extern double* f;
+extern double* fm1;
+extern double* fm2;
 
 void call_non_blockking_comm();
 void call_mesh2d();

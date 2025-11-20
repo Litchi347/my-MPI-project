@@ -1,11 +1,7 @@
 # include "Module.h"
-# include <mpi.h>
-# include <omp.h>
 
 MPI_Request request[4];
 MPI_Status status[4];
-
-int ni_global = ni;
 
 int my_rank = 0;
 int num_procs = 1;
@@ -14,6 +10,8 @@ int ni_start = 0;
 
 int ni = 201;
 int nj = 201;
+int ni_global = ni;
+
 double xa = 0.0;
 double xb = 1.0;
 double ya = 0.0;
@@ -34,6 +32,6 @@ double* x = nullptr;
 double* y = nullptr;
 
 // 网格数组的维度更改为局部维度 + 2个 Ghost Cells(Ghost Cells用于边界通信)
-double** f = nullptr;
-double** fm1 = nullptr;
-double** fm2 = nullptr;
+double* f = nullptr;
+double* fm1 = nullptr;
+double* fm2 = nullptr;

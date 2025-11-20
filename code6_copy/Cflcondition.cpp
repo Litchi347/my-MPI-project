@@ -5,9 +5,9 @@
 using namespace std;
 
 void call_cflcon(){
-    dtx = dx * cfl / U;
-    dty = dy * cfl / V;
-    dt = min(dtx,dty);
+    dx = (xb - xa) / (ni_global - 1);
+    dy = (yb - ya) / (nj - 1);
+    dt = cfl / (U/dx + V/dy);
 
     return;
 }

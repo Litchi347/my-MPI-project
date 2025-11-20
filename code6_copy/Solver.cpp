@@ -5,33 +5,34 @@
 using namespace std;
 
 void call_solver(){
-
     // 边界数据交换
     call_non_blockking_comm();
 
+    call_bounda();
+
     // 局部计算
+    #pragma omp parallel for default(shared)
     for(int i = 1;i <= ni_local;i ++){
-        #pragma omp parallel for default(shared)
-        for(int j = 1;j < nj;j ++){
-            fm1[i][j] = mu * dt * f[i][j] * (1 - f[i][j]) * (f[i][j] - 0.5)
-             + U * dt / dx * (f[i - 1][j] - f[i][j])
-             + f[i][j];
+        for(int j = 1;j < nj - 1; j ++){
+            fm1[IDX(i,j)] = mu * dt * f[IDX(i,j)] * (1 - f[IDX(i,j)]) * (f[IDX(i,j)] - 0.5)
+             - U * dt / dx * (f[IDX(i,j)] - f[IDX(i - 1,j)])
+             + f[IDX(i,j)];
         }
     }
 
+    #pragma omp parallel for default(shared)
     for(int i = 1;i <= ni_local;i ++){
-        #pragma omp parallel for default(shared)
-        for(int j = 1;j < nj;j ++){
-            fm2[i][j] = mu * dt * fm1[i][j] * (1 - fm1[i][j]) * (fm1[i][j] - 0.5)
-             + V * dt / dy * (fm1[i][j - 1] - fm1[i][j])
-             + fm1[i][j];
+        for(int j = 1;j < nj - 1;j ++){
+            fm2[IDX(i,j)] = mu * dt * fm1[IDX(i,j)] * (1 - fm1[IDX(i,j)]) * (fm1[IDX(i,j)] - 0.5)
+             - V * dt / dy * (fm1[IDX(i,j)] - fm1[IDX(i,j - 1)])
+             + fm1[IDX(i,j)];
         }
     }
 
+    #pragma omp parallel for default(shared)
     for(int i = 1;i <= ni_local; i++){
-        #pragma omp parallel for default(shared)
-        for(int j = 1;j < nj;j ++){
-            f[i][j] = fm2[i][j];
+        for(int j = 1;j < nj - 1;j ++){
+            f[IDX(i,j)] = fm2[IDX(i,j)];
         }
     }
     return;

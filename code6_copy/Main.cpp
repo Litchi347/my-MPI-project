@@ -34,7 +34,7 @@ int main(){
     call_mesh2d();
     call_initia();
     call_cflcon();
-    call_bounda();
+    // call_bounda();
 
     // 主时间循环
     do{
@@ -45,9 +45,7 @@ int main(){
             cout << "Time=" << "\t" << time0 << endl;
         }
         
-        if(my_rank == 0){
-            call_output(time0/dt);
-        }
+        call_output(time0/dt);
 
     } while(time0 <= tout);
 
